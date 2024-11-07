@@ -1,0 +1,23 @@
+-- Đặt biến toàn cục Setting nếu chưa tồn tại
+getgenv().Setting = getgenv().Setting or {
+    ESP = {
+        Chest = false -- Mặc định là tắt ESP Chest
+    }
+}
+
+-- Hàm kích hoạt ESP Chest
+function EnableESPChest()
+    getgenv().Setting.ESP.Chest = true -- Bật ESP Chest
+    print("ESP Chest được bật.")
+
+    -- Lưu cài đặt
+    if SettingManager and SettingManager.Save then
+        SettingManager:Save()
+        print("Cài đặt đã được lưu.")
+    else
+        print("SettingManager không tồn tại hoặc không có hàm Save.")
+    end
+end
+
+-- Gọi hàm để bật ESP Chest
+EnableESPChest()
